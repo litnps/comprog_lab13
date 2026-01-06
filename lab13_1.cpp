@@ -19,3 +19,29 @@ int main(){
     cout << "Min = " << B[5];
     return 0;
 }
+
+void stat(const double arr[], int n, double ans[]){
+    double mx = arr[0], mn = arr[0], sum = 0, geo_m = 1, fraction_sum = 0;
+    for(int i = 0 ; i < n ; ++i){
+        mx = max(mx,arr[i]);
+        mn = min(mn,arr[i]);
+        
+        sum += arr[i];
+        geo_m *= arr[i];
+        fraction_sum += 1/arr[i];
+    }
+
+    double Mean = sum/n;
+
+    double sumSD = 0;
+    for(int i = 0 ; i < n ; ++i){
+        sumSD += pow(arr[i] - Mean,2);
+    }
+
+    ans[0] = Mean; 
+    ans[1] = sqrt(sumSD/n);
+    ans[2] = pow(geo_m, 1/n);
+    ans[3] = n/fraction_sum;
+    ans[4] = mx;
+    ans[5] = mn;
+}
